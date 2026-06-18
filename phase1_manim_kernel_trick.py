@@ -5,9 +5,10 @@ from utils.data_generator import generate_ring_dataset
 class SVMKernelTrick3D(ThreeDScene):
     def construct(self):
         # 1. Opening Title
-        title = Title("SVM Kernel Trick: From 2D to 3D", include_underline=False)
+        title = Text("SVM Kernel Trick: From 2D to 3D", font_size=36, color=YELLOW)
+        title.to_edge(UP)
         subtitle = Text("無法用直線在 2D 空間分割 -> 提升至 3D 特徵空間", font_size=24)
-        subtitle.next_to(title, DOWN)
+        subtitle.next_to(title, DOWN, buff=0.3)
         
         self.add_fixed_in_frame_mobjects(title, subtitle)
         self.play(FadeIn(title), Write(subtitle))
@@ -48,7 +49,7 @@ class SVMKernelTrick3D(ThreeDScene):
         self.play(FadeOut(text_2d))
         
         # 3. Show mapping formula
-        formula = MathTex(r"\phi(x, y) = (x, y, x^2 + y^2)", font_size=36)
+        formula = Text("φ(x, y) = (x, y, x² + y²)", font_size=20, color=WHITE)
         formula.to_edge(UP)
         self.add_fixed_in_frame_mobjects(formula)
         self.play(Write(formula))

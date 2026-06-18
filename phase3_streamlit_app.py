@@ -197,6 +197,24 @@ with tab1:
         </div>
         """, unsafe_allow_html=True)
 
+    # --- Insert video player for Phase 1 inside Tab 1 ---
+    import os
+    st.markdown("### 🎬 Phase 1 概念動畫：從 2D 到 3D 的特徵映射")
+    video_paths = [
+        "media/videos/phase1_manim_kernel_trick/1080p60/SVMKernelTrick3D.mp4",
+        "media/videos/phase1_manim_kernel_trick/480p15/SVMKernelTrick3D.mp4"
+    ]
+    video_file = None
+    for path in video_paths:
+        if os.path.exists(path):
+            video_file = path
+            break
+            
+    if video_file:
+        st.video(video_file)
+    else:
+        st.info("💡 提示：在本地端執行 `manim -pql phase1_manim_kernel_trick.py SVMKernelTrick3D` 生成動畫後，影片將會在此處顯示。")
+
     # Compute grid for contour and surface plotting
     x_min, x_max = X[:, 0].min() - 0.5, X[:, 0].max() + 0.5
     y_min, y_max = X[:, 1].min() - 0.5, X[:, 1].max() + 0.5
@@ -413,7 +431,27 @@ with tab2:
     - 外圈紅色點離原點遠 $\rightarrow z$ 值較大，被拉往上方。
     
     此時，在 3D 特徵空間中，我們便可以使用一個**水平的超平面** $z = 1.8$ 將上下兩群點分開！
-    
+    """)
+
+    # --- Insert video player for Phase 1 ---
+    import os
+    st.markdown("#### 🎬 Phase 1: SVM 3D 投影概念動畫影片")
+    video_paths = [
+        "media/videos/phase1_manim_kernel_trick/1080p60/SVMKernelTrick3D.mp4",
+        "media/videos/phase1_manim_kernel_trick/480p15/SVMKernelTrick3D.mp4"
+    ]
+    video_file = None
+    for path in video_paths:
+        if os.path.exists(path):
+            video_file = path
+            break
+            
+    if video_file:
+        st.video(video_file)
+    else:
+        st.info("💡 提示：在本地端執行 `manim -pql phase1_manim_kernel_trick.py SVMKernelTrick3D` 生成動畫後，影片將會在此處顯示。")
+
+    st.markdown(r"""
     ### 3. 超平面的 2D 投影
     當我們將這個 3D 空間的超平面 $z = c$ 投影回 2D 原始空間時：
     $$x^2 + y^2 = c$$
