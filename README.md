@@ -25,16 +25,24 @@ d:\cena\0618\HW8/
 
 ## Installation (環境安裝)
 
-To run all phases, you need to install Python (3.8+ recommended) and the required packages.
-請確保您的系統已安裝 Python，並執行以下命令安裝所需套件：
+To run the interactive web app (Phase 3) or static plot (Phase 2), install the base packages:
+請執行以下命令安裝基礎套件（適用於 Phase 2 與 Phase 3）：
 
 ```bash
 pip install -r requirements.txt
 ```
 
-*Note: The `manim` library requires system-level dependencies like FFmpeg and a LaTeX distribution (e.g. MiKTeX, MacTeX). If you run into build errors when installing `manim` due to missing compilers or python compatibility (e.g. on Python 3.14), you can still run Phase 2 and Phase 3, which only require core packages (`numpy`, `scikit-learn`, `matplotlib`, `streamlit`, `plotly`, `pandas`).*
+### For Phase 1 (Local Manim Animation Only)
+To render the 3D concept video locally, you need to install `manim` separately:
+若您需要在本地端執行 Phase 1 的 3D 動畫，請單獨安裝 `manim`：
 
-*備註：`manim` 套件需要系統級的 FFmpeg 與 LaTeX 支援。若您在安裝 manim 時遇到編譯或環境衝突，您可以先跳過它，Phase 2 與 Phase 3 的執行完全不受影響，僅需基本的 numpy, scikit-learn, matplotlib, streamlit, plotly, pandas 等套件。*
+```bash
+pip install manim
+```
+
+*Note: The `manim` package was removed from `requirements.txt` to prevent Streamlit Cloud deployment build failures, as it requires heavy C-system libraries (e.g., Cairo, X11, Pango) that are missing in cloud build environments. Running Manim locally also requires system-level dependencies like FFmpeg and a LaTeX distribution (e.g., MiKTeX, MacTeX).*
+
+*備註：我們已將 `manim` 從預設的 `requirements.txt` 中移除，以避免在 Streamlit Cloud 部署時因缺乏系統級編譯器與 C 函式庫（如 Cairo, X11, Pango）而導致部署失敗。在本地執行 Manim 還需要另外安裝系統級的 FFmpeg 與 LaTeX 軟體套件。*
 
 ---
 

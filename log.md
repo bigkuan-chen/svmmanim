@@ -77,3 +77,14 @@
     1. 首先繪製**較大的黃色支援向量點（大小為 10）**作為背景底圖。
     2. 接著在上方繪製**正常大小的紅色與藍色點（大小為 6）**。
   * 如此一來，紅點/藍點會精準壓在黃點的中央，使得邊緣露出一圈黃色的外環，在 3D 空間中完美模擬了「空心黃色圈」的標記效果，視覺語義與 2D 圖達到完全統一。
+
+### 💬 Q4: 部署至 Streamlit Cloud 發生依賴編譯報錯 (glcontext / pycairo Build Failure)
+* **使用者提問**：*提供 Streamlit Cloud 部署失敗之 Log，指出 `glcontext` 及 `pycairo` 在編譯時因缺少 `X11/Xlib.h` 及 `cairo` 系統開發庫而中斷，導致部署失敗。*
+* **原理解釋**：
+  * Streamlit Cloud 部署在 Headless Linux 容器中，預設沒有安裝圖形介面底層的 C 開發庫（如 X11, Cairo, Pango）。
+  * 原先的 `requirements.txt` 內含 `manim`。`manim` 依賴的 `moderngl` / `glcontext` 在 Linux 上編譯需要 X11 標頭檔 (`Xlib.h`)，而 `pycairo` 則需要 `cairo` 開發包。因雲端環境缺少這些套件，導致 pip 安裝中斷並部署失敗。
+  * **關鍵設計細節**：我們的 Streamlit 網頁應用程式 (`phase3_streamlit_app.py`) **本身不依賴任何 Manim 程式碼**。`manim` 僅為使用者在本地電腦執行 Phase 1 動畫影片生成之用。
+* **解決方案**：
+  * **依賴隔離**：將 `manim` 從預設的 `requirements.txt` 中移除。如此一來，Streamlit Cloud 只需安裝 numpy, scikit-learn, matplotlib, streamlit, plotly, pandas 等擁有預編譯二進位 Wheel 的套件，即可避開編譯階段，實現秒速建置部署。
+  * **說明文件同步**：更新了 `README.md` 的環境安裝指引，告知使用者若想在本地電腦執行 Phase 1 Manim 動畫，應額外使用 `pip install manim` 單獨安裝，與雲端部署依賴進行了隔離。
+
