@@ -11,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom premium CSS styling for a dark-mode, clean look
+# Custom premium CSS styling for a dark-mode, clean look with high-contrast text
 st.markdown("""
 <style>
     .main {
@@ -24,6 +24,17 @@ st.markdown("""
     h1, h2, h3 {
         color: #ffd32a !important;
         font-family: 'Inter', sans-serif;
+    }
+    /* Make all markdown text, paragraphs, and lists highly legible white */
+    .stMarkdown p, .stMarkdown li, .stMarkdown span, p, li {
+        color: #f5f6fa !important;
+        font-size: 15px;
+    }
+    /* Make sidebar parameters and labels clear */
+    [data-testid="stSidebar"] label, [data-testid="stSidebar"] span, [data-testid="stSidebar"] p {
+        color: #f5f6fa !important;
+        font-size: 15px;
+        font-weight: 500;
     }
     .stSlider > div > div > div > div {
         background-color: #ffd32a !important;
@@ -46,7 +57,7 @@ st.markdown("""
     }
     .metric-label {
         font-size: 14px;
-        color: #cccccc;
+        color: #f5f6fa !important;
     }
     .note-container {
         background-color: #1e1e1d;
@@ -54,6 +65,9 @@ st.markdown("""
         border-radius: 8px;
         border-left: 5px solid #ffd32a;
         margin-top: 20px;
+    }
+    .note-container p {
+        color: #f5f6fa !important;
     }
 </style>
 """, unsafe_allow_html=True)
