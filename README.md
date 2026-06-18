@@ -1,5 +1,9 @@
 # SVM Kernel Trick 3D Interactive Demo (支援向量機核技巧與 3D 互動教學工具)
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://svmmanim-kuan.streamlit.app/)
+
+**Live Demo (線上展示網頁)**: [https://svmmanim-kuan.streamlit.app/](https://svmmanim-kuan.streamlit.app/)
+
 This project is an educational package designed to help students and educators visualize the concepts of **Support Vector Machines (SVM)** and the **Kernel Trick**. It provides three levels of learning materials: a concept animation (Manim), a static/executable Python visualization (Matplotlib), and a fully interactive web application (Streamlit & Plotly).
 
 本專案是一個針對支援向量機 (SVM) 與「核技巧」設計的教學工具包，提供三種維度的學習教材：概念動畫、實體模型二維/三維視覺化、以及互動式教學網頁。
